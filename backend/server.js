@@ -5,6 +5,7 @@ const authRoutes = require('./routes/authRoutes');
 const loopRoutes = require('./routes/loopRoutes');
 const settingsRoutes = require('./routes/settingsRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const peopleRoutes = require('./routes/peopleRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
