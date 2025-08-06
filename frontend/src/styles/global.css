@@ -2536,7 +2536,57 @@ tr:hover {
 
 .people-header {
   margin-bottom: 32px;
+}
+
+.people-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.people-header-text {
   text-align: center;
+  flex: 1;
+}
+
+.view-toggle {
+  display: flex;
+  background: white;
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.view-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #6b7280;
+}
+
+.view-toggle-btn:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.view-toggle-btn.active {
+  background: #3b82f6;
+  color: white;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+.view-toggle-icon {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .people-title {
