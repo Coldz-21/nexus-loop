@@ -8,6 +8,7 @@ const People = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [viewMode, setViewMode] = useState('tiles'); // 'tiles' or 'list'
 
   useEffect(() => {
     fetchUsers();
