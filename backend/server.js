@@ -5,6 +5,7 @@ const authRoutes = require('./routes/authRoutes');
 const loopRoutes = require('./routes/loopRoutes');
 const settingsRoutes = require('./routes/settingsRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const peopleRoutes = require('./routes/peopleRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -22,6 +23,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/loops', loopRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/people', peopleRoutes);
 
 // Serve React app for any non-API routes
 app.get('*', (req, res) => {

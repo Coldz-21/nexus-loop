@@ -31,7 +31,10 @@ const authMiddleware = (req, res, next) => {
       email: user.email,
       role: user.role
     };
-    
+
+    // Update last active timestamp
+    userModel.updateLastActive(user.id);
+
     next();
   } catch (error) {
     res.status(401).json({ error: 'Invalid token.' });

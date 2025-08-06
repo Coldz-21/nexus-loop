@@ -23,6 +23,7 @@ try {
   const hasNotifyNewLoops = tableInfo.some(column => column.name === 'notify_on_new_loops');
   const hasNotifyUpdatedLoops = tableInfo.some(column => column.name === 'notify_on_updated_loops');
   const hasSuspended = tableInfo.some(column => column.name === 'suspended');
+  const hasLastActive = tableInfo.some(column => column.name === 'last_active');
 
   if (!hasNotifyNewLoops) {
     console.log('Adding notify_on_new_loops column to users table...');
@@ -40,6 +41,17 @@ try {
     console.log('Adding suspended column to users table...');
     db.prepare('ALTER TABLE users ADD COLUMN suspended BOOLEAN DEFAULT 0').run();
     console.log('suspended column added successfully');
+  }
+
+  if (!hasLastActive) {
+    console.log('Adding last_active column to users table...');
+    db.prepare('ALTER TABLE users ADD COLUMN last_active DATETIME').run();
+    console.log('last_active column added successfully');
+
+    // Initialize last_active for existing users
+    console.log('Initializing last_active for existing users...');
+    db.prepare('UPDATE users SET last_active = CURRENT_TIMESTAMP WHERE last_active IS NULL').run();
+    console.log('last_active initialized for existing users');
   }
 } catch (error) {
   console.error('Error during user migration:', error);
@@ -145,5 +157,31 @@ module.exports = {
       WHERE id = ?
     `);
     return stmt.run(role, id);
+  },
+
+  updateLastActive: (id) => {
+    const stmt = db.prepare(`
+      UPDATE users SET
+        last_active = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `);
+    return stmt.run(id);
+  },
+
+  searchUsers: (searchTerm = '') => {
+    if (!searchTerm) {
+      return db.prepare(`
+        SELECT id, name, email, role, last_active, suspended, created_at
+        FROM users
+        ORDER BY last_active DESC NULLS LAST, name ASC
+      `).all();
+    }
+
+    return db.prepare(`
+      SELECT id, name, email, role, last_active, suspended, created_at
+      FROM users
+      WHERE name LIKE ? OR email LIKE ?
+      ORDER BY last_active DESC NULLS LAST, name ASC
+    `).all(`%${searchTerm}%`, `%${searchTerm}%`);
   }
 };
