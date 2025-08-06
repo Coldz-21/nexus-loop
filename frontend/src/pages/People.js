@@ -58,8 +58,28 @@ const People = () => {
   return (
     <div className="people-container">
       <div className="people-header">
-        <h1 className="people-title">People</h1>
-        <p className="people-subtitle">View and search registered users</p>
+        <div className="people-header-content">
+          <div className="people-header-text">
+            <h1 className="people-title">People</h1>
+            <p className="people-subtitle">View and search registered users</p>
+          </div>
+          <div className="view-toggle">
+            <button
+              className={`view-toggle-btn ${viewMode === 'tiles' ? 'active' : ''}`}
+              onClick={() => setViewMode('tiles')}
+              title="Tiles view"
+            >
+              <span className="view-toggle-icon">⊞</span>
+            </button>
+            <button
+              className={`view-toggle-btn ${viewMode === 'list' ? 'active' : ''}`}
+              onClick={() => setViewMode('list')}
+              title="List view"
+            >
+              <span className="view-toggle-icon">☰</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className="people-search">
