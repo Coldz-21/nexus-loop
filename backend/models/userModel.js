@@ -47,6 +47,11 @@ try {
     console.log('Adding last_active column to users table...');
     db.prepare('ALTER TABLE users ADD COLUMN last_active DATETIME').run();
     console.log('last_active column added successfully');
+
+    // Initialize last_active for existing users
+    console.log('Initializing last_active for existing users...');
+    db.prepare('UPDATE users SET last_active = CURRENT_TIMESTAMP WHERE last_active IS NULL').run();
+    console.log('last_active initialized for existing users');
   }
 } catch (error) {
   console.error('Error during user migration:', error);
