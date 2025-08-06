@@ -210,6 +210,16 @@ const AppContent = () => {
               />
 
               <Route
+                path="/people"
+                element={
+                  <People
+                    user={user}
+                    addNotification={addNotification}
+                  />
+                }
+              />
+
+              <Route
                 path="/archive"
                 element={
                   user?.role === 'admin' ? (
