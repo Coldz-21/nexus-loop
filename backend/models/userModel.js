@@ -152,5 +152,31 @@ module.exports = {
       WHERE id = ?
     `);
     return stmt.run(role, id);
+  },
+
+  updateLastActive: (id) => {
+    const stmt = db.prepare(`
+      UPDATE users SET
+        last_active = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `);
+    return stmt.run(id);
+  },
+
+  searchUsers: (searchTerm = '') => {
+    if (!searchTerm) {
+      return db.prepare(`
+        SELECT id, name, email, role, last_active, suspended, created_at
+        FROM users
+        ORDER BY last_active DESC NULLS LAST, name ASC
+      `).all();
+    }
+
+    return db.prepare(`
+      SELECT id, name, email, role, last_active, suspended, created_at
+      FROM users
+      WHERE name LIKE ? OR email LIKE ?
+      ORDER BY last_active DESC NULLS LAST, name ASC
+    `).all(`%${searchTerm}%`, `%${searchTerm}%`);
   }
 };
