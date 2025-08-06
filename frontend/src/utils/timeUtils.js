@@ -1,14 +1,15 @@
 export const getRelativeTime = (dateString) => {
   if (!dateString) return 'Never active';
-  
+
   const now = new Date();
   const date = new Date(dateString);
   const diffInSeconds = Math.floor((now - date) / 1000);
-  
-  if (diffInSeconds < 60) {
-    return `Active ${diffInSeconds === 1 ? '1 second' : `${diffInSeconds} seconds`} ago`;
+
+  // Handle negative time differences (clock sync issues) or very recent activity
+  if (diffInSeconds <= 60) {
+    return 'Active less than 1 minute ago';
   }
-  
+
   const diffInMinutes = Math.floor(diffInSeconds / 60);
   if (diffInMinutes < 60) {
     return `Active ${diffInMinutes === 1 ? '1 minute' : `${diffInMinutes} minutes`} ago`;
