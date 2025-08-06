@@ -9,6 +9,7 @@ import EditLoop from './pages/EditLoop';
 import AdminSettings from './pages/AdminSettingsNew';
 import Archive from './pages/Archive';
 import ProfileSettings from './pages/ProfileSettings';
+import People from './pages/People';
 import ScrollToTop from './components/ScrollToTop';
 import NotificationToast from './components/NotificationToast';
 import { NotificationProvider, useNotifications } from './components/NotificationContext';
