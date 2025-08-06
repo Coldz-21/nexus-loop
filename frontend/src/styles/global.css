@@ -2963,3 +2963,205 @@ tr:hover {
     text-align: center;
   }
 }
+
+/* People List View Styles */
+.people-list {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.people-list-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1fr 1fr;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.people-list-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1fr 1fr;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid #f1f5f9;
+  transition: all 0.2s ease;
+  align-items: center;
+}
+
+.people-list-item:hover {
+  background: #f8fafc;
+}
+
+.people-list-item:last-child {
+  border-bottom: none;
+}
+
+.list-column {
+  display: flex;
+  align-items: center;
+}
+
+.user-column {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.list-user-avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.list-user-avatar .avatar-icon {
+  font-size: 20px;
+}
+
+.list-user-avatar .activity-indicator {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.list-user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.list-user-name {
+  font-weight: 600;
+  color: #0f172a;
+  font-size: 0.875rem;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-user-email {
+  color: #64748b;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.role-column .role-badge {
+  font-size: 0.6875rem;
+  padding: 4px 8px;
+}
+
+.activity-column {
+  font-size: 0.875rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.joined-column {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.status-column .user-status.suspended {
+  font-size: 0.75rem;
+  padding: 4px 8px;
+}
+
+.status-active {
+  color: #10b981;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* Responsive adjustments for list view */
+@media (max-width: 1024px) {
+  .people-list-header,
+  .people-list-item {
+    grid-template-columns: 2fr 1fr 1.5fr 1fr;
+    gap: 12px;
+  }
+
+  .joined-column {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .people-header-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .people-header-text {
+    text-align: center;
+  }
+
+  .people-list-header,
+  .people-list-item {
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 8px;
+    padding: 16px 20px;
+  }
+
+  .activity-column,
+  .joined-column {
+    display: none;
+  }
+
+  .list-user-name {
+    font-size: 0.8125rem;
+  }
+
+  .list-user-email {
+    font-size: 0.6875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .people-list-header,
+  .people-list-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .people-list-header {
+    display: none;
+  }
+
+  .people-list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .user-column {
+    justify-content: flex-start;
+  }
+
+  .role-column,
+  .status-column {
+    align-self: flex-start;
+  }
+}
