@@ -72,6 +72,12 @@ const Sidebar = ({ user, onLogout, collapsed, onToggle, isMobile, onNavigate }) 
       path: '/loops/new',
       icon: '➕'
     },
+    // People section for both Agents and Admins
+    {
+      name: 'People',
+      path: '/people',
+      icon: '👥'
+    },
     // Admin-only archive
     ...(user?.role === 'admin' ? [{
       name: 'Archive',
