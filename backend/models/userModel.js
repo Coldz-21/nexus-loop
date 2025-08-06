@@ -45,7 +45,7 @@ try {
 
   if (!hasLastActive) {
     console.log('Adding last_active column to users table...');
-    db.prepare('ALTER TABLE users ADD COLUMN last_active DATETIME DEFAULT CURRENT_TIMESTAMP').run();
+    db.prepare('ALTER TABLE users ADD COLUMN last_active DATETIME').run();
     console.log('last_active column added successfully');
   }
 } catch (error) {
